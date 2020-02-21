@@ -47,16 +47,12 @@ channel = 0
 volume = 100
 tempo = random.choice(range(16,27)) * 10
 
-# create your MIDI object
-mf = MIDIFile(1)     # only 1 track
-track = 0   # the only track
+mf = MIDIFile(1)     # 1 track
+track = 0
 
-time = 0    # start at the beginning
+time = 0
 mf.addTrackName(track, time, "Sample Track")
 mf.addTempo(track, time, tempo)
-
-#arpeggio(key_major, C4, track, 0, 1)
-#arpeggio(key_minor, C4, track, 5, 1)
 
 verse_prog = random.choices(major_key_chords, k=4)
 chorus_prog = random.choices(major_key_chords, k=4)
@@ -80,14 +76,6 @@ while beat <= 128:
         mf.addNote(track, channel, note, beat, 1, 0)
     beat += duration
 
-"""
-beat = 0
-while beat <= 31:
-    chord = random.choice(minor_key_chords)
-    add_chord(chord, C4 - 12, track, beat, 4)
-    beat += 4
-
-"""
 
 with open("output.mid", 'wb') as outf:
     mf.writeFile(outf)
